@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main'
 ]
+#ебаныйротэтогоказиноблять
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
