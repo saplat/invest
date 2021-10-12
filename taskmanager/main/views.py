@@ -11,6 +11,11 @@ apikey = os.getenv('apikey')
 #def news(request):
  #   return HttpResponse("<h4>То шо новости</h4>")
 
+
+def index(request):
+    return render(request, 'main/index.html')
+
+
 def news(request):
     url = f'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey={apikey}'
     response = requests.get(url)
@@ -24,5 +29,4 @@ def news(request):
     return render(request, 'main/news.html', context)
 
 
-def index(request):
-    return render(request, 'main/index.html')
+
