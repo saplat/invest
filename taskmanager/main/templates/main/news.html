@@ -1,6 +1,18 @@
+{% load static %}
+
+
 <!doctype html>
 <html lang="ru">
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'main\css\news.css' %}">
+	<link rel="stylesheet" href="libs/bootstrap-reboot.min.css">
+
+	<link rel="stylesheet" href="libs/bootstrap-grid.min.css">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -9,41 +21,48 @@
     <title>NewsPage</title>
 </head>
 <body>
-    <h1>То шо новости!</h1>
-
+<nav class="navbar">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
+        <img src="{% static 'main\img\logo.png' %}" alt="ADl" class="navbar-brand">
 
-                {% for i in articles %}
-                    <div class="card rounded shadow-lg m-2" style="width: 25rem;">
-                          <img src="{{ i.urlToImage }}" class="card-img-top" alt="...">
-                          <div class="card-body">
-                          <p class="card-text">{{ i.author }}</p>
-                          <h5 class="card-title">{{ i.title }}</h5>
+        <div class="navbar-wrap">
+            <ul class="navbar-menu">
+                <li><a href="/news">Новости</a></li>
+                <li><a href="#">Идеи</a></li>
+                <li><a href="#">Инструменты</a></li>
+            </ul>
 
-                          <p class="card-title">{{ i.source.name }}</p>
+            <a href="#" class="search">Search</a>
+        </div>
+    <img src="{% static 'main\img\info.png' %}" alt="info" class="navbar-info">
+    </div>
+</nav>
 
-                          <p class="card-text">{{ i.description }}</p>
-                          <hr>
+<div class="newsfeed">
+    <div class="row">
+        <div class="col-md-6">
 
+            {% for i in articles %}
+            <div class="card rounded shadow-lg m-2" style="width: 25rem;">
+                <img src="{{ i.urlToImage }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">{{ i.author }}</p>
+                    <h5 class="card-title">{{ i.title }}</h5>
 
+                    <p class="card-title">{{ i.source.name }}</p>
 
-                          <small>{{ i.publishedAt }}</small>
-                          <a href="{{ i.url }}" class="btn btn-success m-1">chekai full novost'</a>
-                          </div>
-                    </div>
-                {% endfor %}
+                    <p class="card-text">{{ i.description }}</p>
+                    <hr>
+
+                    <small>{{ i.publishedAt }}</small>
+                    <a href="{{ i.url }}" class="btn btn-success m-1">chekai full novost'</a>
+                </div>
             </div>
-            <div class="col-md-6">
-                Category
-
-            </div>
-
+            {% endfor %}
         </div>
 
-
-
     </div>
+
+</div>
 </body>
 </html>

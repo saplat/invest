@@ -76,6 +76,7 @@ background: #FFFFFF;
     height: 56px;
 
 }
+
 .navbar-info {
     position: absolute;
     width: 1123px;
@@ -83,3 +84,14 @@ background: #FFFFFF;
     left: 391px;
     top: 80px;
 }
+
+.newsfeed .row .col-md-6 {
+
+    position: absolute;
+    width: 433px;
+    height: 405px;
+    left: 742px;
+    top: 183px;
+
+}
+

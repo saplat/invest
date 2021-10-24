@@ -10,13 +10,10 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'main\css\main.css' %}">
-    <!-- Bootstrap reboot (для сброса стилей) -->
 	<link rel="stylesheet" href="libs/bootstrap-reboot.min.css">
 
-	<!-- Bootstrap сетка -->
 	<link rel="stylesheet" href="libs/bootstrap-grid.min.css">
 
-	<!-- Шрифты с Google Fonts -->
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
@@ -35,8 +32,10 @@
 
             <a href="#" class="search">Search</a>
         </div>
-        
+
+
     </div>
+    <img src="{% static 'main\img\info.png' %}" alt="info" class="navbar-info">
 </nav>
 <main>
 
