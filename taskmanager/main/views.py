@@ -44,6 +44,7 @@ def layout(request):
     context = {'currencies': currencies}
     return render(request, 'main/layout.html', context)
 
+
 def index(request):
     return render(request, 'main/index.html')
 

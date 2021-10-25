@@ -1,9 +1,8 @@
 body {
-position: relative;
-width: 1920px;
-height: 2000px;
-
-background: #FFFFFF;
+    position: relative;
+    width: 1920px;
+    height: 2000px;
+    background: #FFFFFF;
 }
 
 .navbar {
@@ -23,7 +22,6 @@ background: #FFFFFF;
     list-style-type: none;
     padding-left: 0;
     margin-bottom: 0;
-
 
 }
 
@@ -47,14 +45,15 @@ background: #FFFFFF;
 .navbar-wrap {
     display: flex;
     flex-flow: row nowrap;
-    width: 500px;
+    width: 300px;
     position: relative;
     margin: 0 auto;
+
 }
 
 .search {
     margin-left: 100px;
-    padding: 10px 30px;
+    padding: 7px 40px;
     background-color: #eef1f4;
     border-radius: 10px;
     color: #414141;
@@ -62,9 +61,8 @@ background: #FFFFFF;
     border: 1.7px solid #000000;
     transition: all .1s ease-in-out;
 
-
-
 }
+
 .search:hover {
     transform: scale(1.02);
     color: #414141;
@@ -76,10 +74,14 @@ background: #FFFFFF;
     height: 56px;
 
 }
+
 .navbar-info {
     position: absolute;
     width: 1123px;
     height: 52px;
     left: 391px;
     top: 80px;
+
 }
+
+
