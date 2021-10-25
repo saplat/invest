@@ -18,6 +18,32 @@ apikey = os.getenv('apikey')
  #   return HttpResponse("<h4>То шо новости</h4>")
 
 
+def layout(request):
+    data = get_currencies()
+    EURUSD = {'name':data._get_value(0,'Name'),
+              'LP': data._get_value(0,'Last Price'),
+              'change': data._get_value(0, '% Change')}
+
+    USDRUB = {'name':data._get_value(23,'Name'),
+              'LP': data._get_value(23,'Last Price'),
+              'change': data._get_value(23, '% Change')}
+
+    USDJPY = {'name':data._get_value(1,'Name'),
+              'LP': data._get_value(1,'Last Price'),
+              'change': data._get_value(1, '% Change')}
+
+    GBPUSD = {'name':data._get_value(2,'Name'),
+              'LP': data._get_value(2,'Last Price'),
+              'change': data._get_value(2, '% Change')}
+
+    currencies = {'EURUSD': EURUSD,
+                  'USDRUB': USDRUB,
+                  'USDJPY': USDJPY,
+                  'GBPUSD': GBPUSD}
+
+    context = {'currencies': currencies}
+    return render(request, 'main/layout.html', context)
+
 def index(request):
     return render(request, 'main/index.html')
 

@@ -22,7 +22,6 @@
 <nav class="navbar">
     <div class="container">
         <img src="{% static 'main\img\logo.png' %}" alt="ADl" class="navbar-brand">
-
         <div class="navbar-wrap">
             <ul class="navbar-menu">
                 <li><a href="/news">Новости</a></li>
@@ -32,13 +31,42 @@
 
             <a href="#" class="search">Search</a>
         </div>
-
-
     </div>
     <img src="{% static 'main\img\info.png' %}" alt="info" class="navbar-info">
+    <div class ="container">
+        <style>
+        #line_blocks {width: 110 px;
+                      height: 50 px;
+                      background: #f1f1f1;
+                      float:left;
+                      margin: 0 15 px 15 px 0;
+                      padding: 10 px;}
+        </style>
+        <div style ="width: 100%; height: 1 px; clear:both;"></div>
+        <div id="line_blocks">
+            <p><b>{{currencies.EURUSD.name}}</b></p>
+            <p>{{currencies.EURUSD.LP}}</p>
+            <p>{{currencies.EURUSD.change}}</p>
+        </div>
+        <div id="line_blocks">
+            <p><b>{{currencies.USDRUB.name}}</b></p>
+            <p>{{currencies.USDRUB.LP}}</p>
+            <p>{{currencies.USDRUB.change}}</p>
+        </div>
+        <div id="line_blocks">
+            <p><b>{{currencies.USDJPY.name}}</b></p>
+            <p>{{currencies.USDJPY.LP}}</p>
+            <p>{{currencies.USDJPY.change}}</p>
+        </div>
+        <div id="line_blocks">
+            <p><b>{{currencies.GBPUSD.name}}</b></p>
+            <p>{{currencies.GBPUSD.LP}}</p>
+            <p>{{currencies.GBPUSD.change}}</p>
+        </div>
+    </div>
 </nav>
-<main>
 
+<main>
 </main>
 </body>
 
