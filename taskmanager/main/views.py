@@ -1,6 +1,8 @@
+import pandas as pd
 from django.shortcuts import render
 from django.http import HttpResponse
 import requests
+from requests.exceptions import ConnectionError
 import os
 import time
 import asyncio
@@ -9,6 +11,8 @@ import queue
 from dotenv import load_dotenv
 from yahoo_fin.stock_info import *
 from threading import Thread
+from bs4 import BeautifulSoup
+from .lifestockfunc import Lifestockfunc
 
 load_dotenv()
 apikey = os.getenv('apikey')
@@ -16,6 +20,46 @@ apikey = os.getenv('apikey')
 
 #def news(request):
  #   return HttpResponse("<h4>То шо новости</h4>")
+
+
+def lifestocks(request):
+        url = 'https://finance.yahoo.com/quote/AAPL?p=AAPL&.tsrc=fin-srch'
+        try:
+            r = requests.get(url)
+            web_content = BeautifulSoup(r.text, 'lxml')
+            texts = Lifestockfunc.web_content_div(web_content, 'My(6px) Pos(r) smartphone_Mt(6px) W(100%)')
+            if texts != []:
+                print(texts)
+                price, change, times = texts[0], texts[1], texts[2]
+            else:
+                price, change = [], []
+        except ConnectionError:
+            price, change = [], []
+
+        try:
+            r = requests.get(url)
+            web_content = BeautifulSoup(r.text, 'lxml')
+            texts = Lifestockfunc.web_content_div(web_content, 'Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)')
+            if texts != []:
+                print(texts)
+                price1, change1, times1 = texts[0], texts[2], texts[3]
+            else:
+                price1, change1 = [], []
+        except ConnectionError:
+            price1, change1 = [], []
+
+        context = {'price' : price,
+                   'change' : change,
+                   'times' : times,
+                   'price1' : price1,
+                   'change1' : change1,
+                   'times1' : times1}
+        return render(request, 'main/lifestocks.html', context)
+
+def lifestocks1(request):
+    #while(True):
+        lifestocks(request)
+        time.sleep(60)
 
 
 def layout(request):
