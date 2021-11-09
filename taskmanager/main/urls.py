@@ -5,7 +5,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('lifestocks', views.lifestocks1),
+    path('FB', views.FB),
+    path('GOOG', views.GOOG),
+    path('AMZN', views.AMZN),
+    path('AAPL', views.AAPL),
     path('', views.layout),
     path('', views.index),
     path('news', views.news, name='news'),

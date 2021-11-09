@@ -22,14 +22,13 @@ apikey = os.getenv('apikey')
  #   return HttpResponse("<h4>То шо новости</h4>")
 
 
-def lifestocks(request):
+def AAPL(request):
         url = 'https://finance.yahoo.com/quote/AAPL?p=AAPL&.tsrc=fin-srch'
         try:
             r = requests.get(url)
             web_content = BeautifulSoup(r.text, 'lxml')
             texts = Lifestockfunc.web_content_div(web_content, 'My(6px) Pos(r) smartphone_Mt(6px) W(100%)')
             if texts != []:
-                print(texts)
                 price, change, times = texts[0], texts[1], texts[2]
             else:
                 price, change = [], []
@@ -41,25 +40,344 @@ def lifestocks(request):
             web_content = BeautifulSoup(r.text, 'lxml')
             texts = Lifestockfunc.web_content_div(web_content, 'Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)')
             if texts != []:
-                print(texts)
                 price1, change1, times1 = texts[0], texts[2], texts[3]
             else:
-                price1, change1 = [], []
+                price1, change1, times1 = [], [], []
         except ConnectionError:
-            price1, change1 = [], []
+            price1, change1, times1 = [], [], []
+
+        try:
+            r = requests.get(url)
+            web_content = BeautifulSoup(r.text, 'lxml')
+            texts = Lifestockfunc.web_content_div(web_content, 'D(ib) W(1/2) Bxz(bb) Pend(12px) Va(t) ie-7_D(i) smartphone_D(b) smartphone_W(100%) smartphone_Pend(0px) smartphone_BdY smartphone_Bdc($seperatorColor)')
+            if texts != []:
+                previous_close, open, bid, ask, volume, avgvolume = texts[1], texts[3], texts[5], texts[7], texts[11], texts[13]
+            else:
+                previous_close, open, bid, ask, volume, avgvolume = [], [], [], [], [], []
+        except ConnectionError:
+            previous_close, open, bid, ask, volume, avgvolume = [], [], [], [], [], []
+
+        try:
+            r = requests.get(url)
+            web_content = BeautifulSoup(r.text, 'lxml')
+            texts = Lifestockfunc.web_content_div_td(web_content, 'D(ib) W(1/2) Bxz(bb) Pend(12px) Va(t) ie-7_D(i) smartphone_D(b) smartphone_W(100%) smartphone_Pend(0px) smartphone_BdY smartphone_Bdc($seperatorColor)')
+            if texts != []:
+                days_range, week_range = texts[9], texts [11]
+            else:
+                days_range, week_range = [], []
+        except ConnectionError:
+            days_range, week_range = [], []
+
+
+
+        try:
+            r = requests.get(url)
+            web_content = BeautifulSoup(r.text, 'lxml')
+            texts = Lifestockfunc.web_content_div_td(web_content, 'D(ib) W(1/2) Bxz(bb) Pstart(12px) Va(t) ie-7_D(i) ie-7_Pos(a) smartphone_D(b) smartphone_W(100%) smartphone_Pstart(0px) smartphone_BdB smartphone_Bdc($seperatorColor)')
+            if texts != []:
+                market_cap, beta, pe_ratio, epc, earn_date, forward_div, ex_div, target_est = texts[1], texts[3], texts[5], texts[7], texts[9], texts[11], texts[13], texts[15]
+            else:
+                market_cap, beta, pe_ratio, epc, earn_date, forward_div, ex_div, target_est = [], [], [], [], [], [], [], []
+        except ConnectionError:
+            market_cap, beta, pe_ratio, epc, earn_date, forward_div, ex_div, target_est = [], [], [], [], [], [], [], []
 
         context = {'price' : price,
                    'change' : change,
                    'times' : times,
                    'price1' : price1,
                    'change1' : change1,
-                   'times1' : times1}
-        return render(request, 'main/lifestocks.html', context)
+                   'times1' : times1,
+                   'previous_close': previous_close,
+                   'open' : open,
+                   'bid' : bid,
+                   'ask' : ask,
+                   'volume' : volume,
+                   'avgvolume' : avgvolume,
+                   'days_range' : days_range,
+                   'week_range' : week_range,
+                   'market_cap' : market_cap,
+                   'beta' : beta,
+                   'pe_ratio' : pe_ratio,
+                   'epc' : epc,
+                   'earn_date' : earn_date,
+                   'forward_div' : forward_div,
+                   'ex_div' : ex_div,
+                   'target_est' : target_est}
+        return render(request, 'main/aapl.html', context)
 
-def lifestocks1(request):
-    #while(True):
-        lifestocks(request)
-        time.sleep(60)
+
+def AMZN(request):
+    url = 'https://finance.yahoo.com/quote/AMZN?p=AMZN&ncid=stockrec'
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div(web_content, 'My(6px) Pos(r) smartphone_Mt(6px) W(100%)')
+        if texts != []:
+            price, change, times = texts[0], texts[1], texts[2]
+        else:
+            price, change, times = [], [], []
+    except ConnectionError:
+        price, change, times = [], [], []
+
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div(web_content, 'Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)')
+        if texts != []:
+            price1, change1, times1 = texts[0], texts[2], texts[3]
+        else:
+            price1, change1, times1 = [], [], []
+    except ConnectionError:
+        price1, change1, times1 = [], [], []
+
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div(web_content,
+                                              'D(ib) W(1/2) Bxz(bb) Pend(12px) Va(t) ie-7_D(i) smartphone_D(b) smartphone_W(100%) smartphone_Pend(0px) smartphone_BdY smartphone_Bdc($seperatorColor)')
+        if texts != []:
+            previous_close, open, bid, ask, volume, avgvolume = texts[1], texts[3], texts[5], texts[7], texts[11], \
+                                                                texts[13]
+        else:
+            previous_close, open, bid, ask, volume, avgvolume = [], [], [], [], [], []
+    except ConnectionError:
+        previous_close, open, bid, ask, volume, avgvolume = [], [], [], [], [], []
+
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div_td(web_content,
+                                                 'D(ib) W(1/2) Bxz(bb) Pend(12px) Va(t) ie-7_D(i) smartphone_D(b) smartphone_W(100%) smartphone_Pend(0px) smartphone_BdY smartphone_Bdc($seperatorColor)')
+        if texts != []:
+            days_range, week_range = texts[9], texts[11]
+        else:
+            days_range, week_range = [], []
+    except ConnectionError:
+        days_range, week_range = [], []
+
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div_td(web_content,
+                                                 'D(ib) W(1/2) Bxz(bb) Pstart(12px) Va(t) ie-7_D(i) ie-7_Pos(a) smartphone_D(b) smartphone_W(100%) smartphone_Pstart(0px) smartphone_BdB smartphone_Bdc($seperatorColor)')
+        if texts != []:
+            market_cap, beta, pe_ratio, epc, earn_date, forward_div, ex_div, target_est = texts[1], texts[3], texts[5], \
+                                                                                          texts[7], texts[9], texts[11], \
+                                                                                          texts[13], texts[15]
+        else:
+            market_cap, beta, pe_ratio, epc, earn_date, forward_div, ex_div, target_est = [], [], [], [], [], [], [], []
+    except ConnectionError:
+        market_cap, beta, pe_ratio, epc, earn_date, forward_div, ex_div, target_est = [], [], [], [], [], [], [], []
+
+    context = {'price': price,
+               'change': change,
+               'times': times,
+               'price1': price1,
+               'change1': change1,
+               'times1': times1,
+               'previous_close': previous_close,
+               'open': open,
+               'bid': bid,
+               'ask': ask,
+               'volume': volume,
+               'avgvolume': avgvolume,
+               'days_range': days_range,
+               'week_range': week_range,
+               'market_cap': market_cap,
+               'beta': beta,
+               'pe_ratio': pe_ratio,
+               'epc': epc,
+               'earn_date': earn_date,
+               'forward_div': forward_div,
+               'ex_div': ex_div,
+               'target_est': target_est}
+    return render(request, 'main/amzn.html', context)
+
+def GOOG(request):
+    url = 'https://finance.yahoo.com/quote/GOOG?p=GOOG&ncid=stockrec'
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div(web_content, 'D(ib) Va(m) Maw(65%) Ov(h)')
+        if texts != []:
+            price, change, times = texts[0], texts[1], texts[2]
+        else:
+            price, change, times = [], [], []
+    except ConnectionError:
+        price, change, times = [], [], []
+
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div(web_content, 'Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)')
+        if texts != []:
+            price1, change1, times1 = texts[0], texts[2], texts[3]
+        else:
+            price1, change1, times1 = [], [], []
+    except ConnectionError:
+        price1, change1, times1 = [], [], []
+
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div(web_content,
+                                              'D(ib) W(1/2) Bxz(bb) Pend(12px) Va(t) ie-7_D(i) smartphone_D(b) smartphone_W(100%) smartphone_Pend(0px) smartphone_BdY smartphone_Bdc($seperatorColor)')
+        if texts != []:
+            previous_close, open, bid, ask, volume, avgvolume = texts[1], texts[3], texts[5], texts[7], texts[11], \
+                                                                texts[13]
+        else:
+            previous_close, open, bid, ask, volume, avgvolume = [], [], [], [], [], []
+    except ConnectionError:
+        previous_close, open, bid, ask, volume, avgvolume = [], [], [], [], [], []
+
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div_td(web_content,
+                                                 'D(ib) W(1/2) Bxz(bb) Pend(12px) Va(t) ie-7_D(i) smartphone_D(b) smartphone_W(100%) smartphone_Pend(0px) smartphone_BdY smartphone_Bdc($seperatorColor)')
+        if texts != []:
+            days_range, week_range = texts[9], texts[11]
+        else:
+            days_range, week_range = [], []
+    except ConnectionError:
+        days_range, week_range = [], []
+
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div_td(web_content,
+                                                 'D(ib) W(1/2) Bxz(bb) Pstart(12px) Va(t) ie-7_D(i) ie-7_Pos(a) smartphone_D(b) smartphone_W(100%) smartphone_Pstart(0px) smartphone_BdB smartphone_Bdc($seperatorColor)')
+        if texts != []:
+            market_cap, beta, pe_ratio, epc, earn_date, forward_div, ex_div, target_est = texts[1], texts[3], texts[5], \
+                                                                                          texts[7], texts[9], texts[11], \
+                                                                                          texts[13], texts[15]
+        else:
+            market_cap, beta, pe_ratio, epc, earn_date, forward_div, ex_div, target_est = [], [], [], [], [], [], [], []
+    except ConnectionError:
+        market_cap, beta, pe_ratio, epc, earn_date, forward_div, ex_div, target_est = [], [], [], [], [], [], [], []
+
+    context = {'price': price,
+               'change': change,
+               'times': times,
+               'price1': price1,
+               'change1': change1,
+               'times1': times1,
+               'previous_close': previous_close,
+               'open': open,
+               'bid': bid,
+               'ask': ask,
+               'volume': volume,
+               'avgvolume': avgvolume,
+               'days_range': days_range,
+               'week_range': week_range,
+               'market_cap': market_cap,
+               'beta': beta,
+               'pe_ratio': pe_ratio,
+               'epc': epc,
+               'earn_date': earn_date,
+               'forward_div': forward_div,
+               'ex_div': ex_div,
+               'target_est': target_est}
+    return render(request, 'main/goog.html', context)
+
+
+def FB(request):
+    url = 'https://finance.yahoo.com/quote/FB?p=FB&ncid=stockrec'
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div(web_content, 'D(ib) Va(m) Maw(65%) Ov(h)')
+        if texts != []:
+            price, change, times = texts[0], texts[1], texts[2]
+        else:
+            price, change, times = [], [], []
+    except ConnectionError:
+        price, change, times = [], [], []
+
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div(web_content, 'Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)')
+        if texts != []:
+            price1, change1, times1 = texts[0], texts[2], texts[3]
+        else:
+            price1, change1, times1 = [], [], []
+    except ConnectionError:
+        price1, change1, times1 = [], [], []
+
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div(web_content,
+                                              'D(ib) W(1/2) Bxz(bb) Pend(12px) Va(t) ie-7_D(i) smartphone_D(b) smartphone_W(100%) smartphone_Pend(0px) smartphone_BdY smartphone_Bdc($seperatorColor)')
+        if texts != []:
+            previous_close, open, bid, ask, volume, avgvolume = texts[1], texts[3], texts[5], texts[7], texts[11], \
+                                                                texts[13]
+        else:
+            previous_close, open, bid, ask, volume, avgvolume = [], [], [], [], [], []
+    except ConnectionError:
+        previous_close, open, bid, ask, volume, avgvolume = [], [], [], [], [], []
+
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div_td(web_content,
+                                                 'D(ib) W(1/2) Bxz(bb) Pend(12px) Va(t) ie-7_D(i) smartphone_D(b) smartphone_W(100%) smartphone_Pend(0px) smartphone_BdY smartphone_Bdc($seperatorColor)')
+        if texts != []:
+            days_range, week_range = texts[9], texts[11]
+        else:
+            days_range, week_range = [], []
+    except ConnectionError:
+        days_range, week_range = [], []
+
+    try:
+        r = requests.get(url)
+        web_content = BeautifulSoup(r.text, 'lxml')
+        texts = Lifestockfunc.web_content_div_td(web_content,
+                                                 'D(ib) W(1/2) Bxz(bb) Pstart(12px) Va(t) ie-7_D(i) ie-7_Pos(a) smartphone_D(b) smartphone_W(100%) smartphone_Pstart(0px) smartphone_BdB smartphone_Bdc($seperatorColor)')
+        if texts != []:
+            market_cap, beta, pe_ratio, epc, earn_date, forward_div, ex_div, target_est = texts[1], texts[3], texts[5], \
+                                                                                          texts[7], texts[9], texts[11], \
+                                                                                          texts[13], texts[15]
+        else:
+            market_cap, beta, pe_ratio, epc, earn_date, forward_div, ex_div, target_est = [], [], [], [], [], [], [], []
+    except ConnectionError:
+        market_cap, beta, pe_ratio, epc, earn_date, forward_div, ex_div, target_est = [], [], [], [], [], [], [], []
+
+    context = {'price': price,
+               'change': change,
+               'times': times,
+               'price1': price1,
+               'change1': change1,
+               'times1': times1,
+               'previous_close': previous_close,
+               'open': open,
+               'bid': bid,
+               'ask': ask,
+               'volume': volume,
+               'avgvolume': avgvolume,
+               'days_range': days_range,
+               'week_range': week_range,
+               'market_cap': market_cap,
+               'beta': beta,
+               'pe_ratio': pe_ratio,
+               'epc': epc,
+               'earn_date': earn_date,
+               'forward_div': forward_div,
+               'ex_div': ex_div,
+               'target_est': target_est}
+    return render(request, 'main/fb.html', context)
+
+
+
+
+
+#def lifestocks1(request):
+#    print('AAAAAAAAAAAAAAAAAAAAAAAAAAA')
+#    while(True):
+#        lifestocks(request)
+#        time.sleep(30)
+#    return render(request, 'main/aapl.html')
 
 
 def layout(request):
