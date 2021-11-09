@@ -418,8 +418,29 @@ def news(request):
 
     articles = data['articles']
 
+    data = get_currencies()
+    EURUSD = {'name': data._get_value(0, 'Name'),
+              'LP': data._get_value(0, 'Last Price'),
+              'change': data._get_value(0, '% Change')}
+
+    USDRUB = {'name': data._get_value(23, 'Name'),
+              'LP': data._get_value(23, 'Last Price'),
+              'change': data._get_value(23, '% Change')}
+
+    USDJPY = {'name': data._get_value(1, 'Name'),
+              'LP': data._get_value(1, 'Last Price'),
+              'change': data._get_value(1, '% Change')}
+
+    GBPUSD = {'name': data._get_value(2, 'Name'),
+              'LP': data._get_value(2, 'Last Price'),
+              'change': data._get_value(2, '% Change')}
+
     context = {
-        'articles':articles
+        'articles':articles,
+        'EURUSD': EURUSD,
+        'USDRUB': USDRUB,
+        'USDJPY': USDJPY,
+        'GBPUSD': GBPUSD
     }
     return render(request, 'main/news.html', context)
 
