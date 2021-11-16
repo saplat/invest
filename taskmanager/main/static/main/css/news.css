@@ -9,7 +9,7 @@ background: #FFFFFF;
 .navbar {
     width: 100%;
     height: 70px;
-    box-shadow: 0 1px 1px black;
+    border-bottom: 1px ;
 
 }
 .navbar .container {
@@ -88,6 +88,7 @@ background: #FFFFFF;
 }
 
 
+
 /* Newsfeed */
 
 .newsfeed .row .col-md-6 {
@@ -101,4 +102,5 @@ background: #FFFFFF;
 
 
 }
+
 

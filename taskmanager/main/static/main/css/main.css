@@ -1,21 +1,24 @@
 body {
     position: relative;
-    width: 1920px;
+    width: auto;
     height: 2000px;
     background: #FFFFFF;
+    font-style: normal;
 }
 
+/* Navbar */
 .navbar {
     width: 100%;
     height: 70px;
-    box-shadow: 0 1px 1px black;
-
+    border-bottom: 1px solid #000;
 }
+
 .navbar .container {
     height: inherit;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .navbar-menu {
@@ -71,8 +74,7 @@ body {
 }
 
 .navbar-brand {
-    width: 108px;
-    height: 56px;
+    width: 115px;
 
 }
 
@@ -85,4 +87,104 @@ body {
 
 }
 
+.line_blocks {
+    padding-top: 20px;
+}
 
+/* Cards */
+
+.cards {
+    margin-left: 350px;
+    width: 1300;
+
+}
+
+.cardaapl {
+    width: 300px;
+    height: 150px;
+    margin-top: 100px;
+    position: absolute;
+    padding-top: 50px;
+    padding-left: 110px;
+    border: 1px solid #000;
+    border-radius: 15px;
+
+}
+.cardaapl:hover {
+    transform: scale(1.02);
+    color: #414141;
+}
+.aapllink {
+    text-decoration: none;
+    font-size: 30px;
+    color: #000000;
+
+}
+
+.cardamzn {
+    width: 300px;
+    height: 150px;
+    margin-top: 100px;
+    margin-left: 330px;
+    position: absolute;
+    padding-top: 50px;
+    padding-left: 100px;
+    border: 1px solid #000;
+    border-radius: 15px;
+
+}
+.cardamzn:hover {
+    transform: scale(1.02);
+    color: #414141;
+}
+.amznlink {
+    text-decoration: none;
+    font-size: 30px;
+    color: #000000;
+
+}
+
+.cardgoog {
+    width: 300px;
+    height: 150px;
+    margin-top: 100px;
+    margin-left: 660px;
+    position: absolute;
+    padding-top: 50px;
+    padding-left: 100px;
+    border: 1px solid #000;
+    border-radius: 15px;
+
+}
+.cardgoog:hover {
+    transform: scale(1.02);
+    color: #414141;
+}
+.googlink {
+    text-decoration: none;
+    font-size: 30px;
+    color: #000000;
+
+}
+
+.cardfb {
+    width: 300px;
+    height: 150px;
+    margin-top: 100px;
+    margin-left: 990px;
+    position: absolute;
+    padding-top: 50px;
+    padding-left: 130px;
+    border: 1px solid #000;
+    border-radius: 15px;
+}
+.cardfb:hover {
+    transform: scale(1.02);
+    color: #414141;
+}
+.fblink {
+    text-decoration: none;
+    font-size: 30px;
+    color: #000000;
+
+}
