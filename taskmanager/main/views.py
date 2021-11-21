@@ -50,8 +50,10 @@ def AAPL(request):
             r = requests.get(url)
             web_content = BeautifulSoup(r.text, 'lxml')
             texts = Lifestockfunc.web_content_div(web_content, 'D(ib) W(1/2) Bxz(bb) Pend(12px) Va(t) ie-7_D(i) smartphone_D(b) smartphone_W(100%) smartphone_Pend(0px) smartphone_BdY smartphone_Bdc($seperatorColor)')
+            print(texts)
             if texts != []:
-                previous_close, open, bid, ask, volume, avgvolume = texts[1], texts[3], texts[5], texts[7], texts[11], texts[13]
+                #previous_close, open, bid, ask, volume, avgvolume = texts[1], texts[3], texts[5], texts[7], texts[11], texts[13]
+                previous_close, open, bid, ask, volume, avgvolume = texts[1], texts[3], texts[5], texts[7], texts[9], texts[11]
             else:
                 previous_close, open, bid, ask, volume, avgvolume = [], [], [], [], [], []
         except ConnectionError:
@@ -89,8 +91,8 @@ def AAPL(request):
                    'times1' : times1,
                    'previous_close': previous_close,
                    'open' : open,
-                   'bid' : bid,
-                   'ask' : ask,
+                   #'bid' : bid,
+                   #'ask' : ask,
                    'volume' : volume,
                    'avgvolume' : avgvolume,
                    'days_range' : days_range,
