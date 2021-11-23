@@ -21,6 +21,8 @@ apikey = os.getenv('apikey')
 #def news(request):
  #   return HttpResponse("<h4>То шо новости</h4>")
 
+def graph(request):
+    return render(request, "main/graph.html", context={'text' : 'Hello world'})
 
 def AAPL(request):
         url = 'https://finance.yahoo.com/quote/AAPL?p=AAPL&.tsrc=fin-srch'

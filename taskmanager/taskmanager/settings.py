@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'main.apps.MainConfig',
 ]
 #ебаныйротэтогоказиноблять
@@ -59,7 +60,9 @@ ROOT_URLCONF = 'taskmanager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR.joinpath('templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,6 +76,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'taskmanager.wsgi.application'
+ASGI_APPLICATION = 'taskmanager.asgi.application'
 
 
 # Database
@@ -125,7 +129,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR.joinpath('static'),
 ]
 
 # Default primary key field type
