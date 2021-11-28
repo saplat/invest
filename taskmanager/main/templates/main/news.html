@@ -21,7 +21,9 @@
 <body>
 <nav class="navbar">
     <div class="container">
-        <img src="{% static 'main\img\logo.png' %}" alt="ADl" class="navbar-brand">
+        <a href="">
+            <img src="{% static 'main\img\logo.png' %}" alt="ADl" class="navbar-brand">
+        </a>
         <div class="navbar-wrap">
             <ul class="navbar-menu">
                 <li><a href="/news">Новости</a></li>
@@ -57,7 +59,7 @@
         <div class="col-md-6">
 
             {% for i in articles %}
-            <div class="card rounded shadow-lg m-2" style="width: 25rem;">
+            <div class="card rounded shadow-lg m-2">
                 <img src="{{ i.urlToImage }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">{{ i.author }}</p>
@@ -76,7 +78,7 @@
         </div>
 
     </div>
-
 </div>
+
 </body>
 </html>

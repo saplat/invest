@@ -1,17 +1,19 @@
-import pandas as pd
-from django.shortcuts import render
-from django.http import HttpResponse
-import requests
-from requests.exceptions import ConnectionError
-import os
-import time
 import asyncio
-import websockets
+import os
 import queue
-from dotenv import load_dotenv
-from yahoo_fin.stock_info import *
+import time
 from threading import Thread
+
+import pandas as pd
+import requests
+import websockets
 from bs4 import BeautifulSoup
+from django.http import HttpResponse
+from django.shortcuts import render
+from dotenv import load_dotenv
+from requests.exceptions import ConnectionError
+from yahoo_fin.stock_info import *
+
 from .lifestockfunc import Lifestockfunc
 
 load_dotenv()
