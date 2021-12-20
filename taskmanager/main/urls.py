@@ -5,6 +5,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('AAPL_holders', views.AAPL_holders),
+    path('AAPL_stat', views.AAPL_stat),
     path('chatchoose', views.chatchoose, name='chatchoose'),
     path('<str:room_name>/', views.room, name='room'),
     path('FB', views.FB),

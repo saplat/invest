@@ -32,6 +32,11 @@ def room(request, room_name):
         'room_name': room_name
     })
 
+def AAPL_stat(request):
+    return render(request, 'main/AAPL_stat.html')
+
+def AAPL_holders(request):
+    return render(request, 'main/holders.html')
 
 def AAPL(request):
         url = 'https://finance.yahoo.com/quote/AAPL?p=AAPL&.tsrc=fin-srch'
@@ -64,7 +69,8 @@ def AAPL(request):
             print(texts)
             if texts != []:
                 #previous_close, open, bid, ask, volume, avgvolume = texts[1], texts[3], texts[5], texts[7], texts[11], texts[13]
-                previous_close, open, bid, ask, volume, avgvolume = texts[1], texts[3], texts[5], texts[7], texts[9], texts[11]
+                #previous_close, open, bid, ask, volume, avgvolume = texts[1], texts[3], texts[5], texts[7], texts[9], texts[11]
+                previous_close, open, bid, ask, volume, avgvolume = '143', '124', '123421', '2142', '123', '124'
             else:
                 previous_close, open, bid, ask, volume, avgvolume = [], [], [], [], [], []
         except ConnectionError:
@@ -102,8 +108,8 @@ def AAPL(request):
                    'times1' : times1,
                    'previous_close': previous_close,
                    'open' : open,
-                   #'bid' : bid,
-                   #'ask' : ask,
+                   'bid' : bid,
+                   'ask' : ask,
                    'volume' : volume,
                    'avgvolume' : avgvolume,
                    'days_range' : days_range,
